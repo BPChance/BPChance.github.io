@@ -1,1 +1,152 @@
-<h1>Hello, World!</h1>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Braden's Portfolio</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <nav>
+        <a href="#portfolio" class="nav-link">Portfolio</a>
+        <a href="#contact" class="nav-link contact-link">Contact Me</a>
+    </nav>
+
+    <h1 class="Hello">Hello, World!</h1>
+
+    <section id="about">
+        <img src="images/profile.jpeg" alt="profile">
+        <h3 class="subtitle">Braden Chance</h3>
+        <h1 class="title">Full Stack Developer</h1>
+        <p class="about-text">
+            Passionate about building efficient and scalable software solutions. 
+            Transitioned from the coffee industry to tech, diving deep into development and problem-solving. 
+            Always excited to learn, collaborate, and create impactful projects.
+        </p>
+    </section>
+
+    <section id="portfolio">
+        <h2>My Projects</h2>
+        <div class="project-container">
+            <div class="project">
+                <img src="images/musicvisualizerss.jpeg" alt="Music Visualizer">
+                <h3>Music Visualizer</h3>
+                <p>a reactive audio visualizer using JavaScript, the Web Audio API, basic HTML, and Tailwind CSS</p>
+                <a href="https://github.com/BPChance/Music-Visualizer.git" target="_blank">GitHub Repo</a>
+                <a href="https://bpchance.github.io/Music-Visualizer/" target="_blank">Live Demo</a>
+            </div>
+
+            <div class="project">
+                <img src="images/simpleshell.png" alt="Project 2">
+                <h3>Simple Shell</h3>
+                <p>Simple Shell is a basic command-line shell program designed to provide users with a simple interface to interact with their operating system</p>
+                <a href="https://github.com/BPChance/atlas-simple_shell.git" target="_blank">GitHub Repo</a>
+            </div>
+
+            <div class="project">
+                <img src="images/Pascal.png" alt="Two Dudes Two Games">
+                <h3>Two Dudes, Two Games</h3>
+                <p>Two Dudes, Two Games is a collaborative project where two fairytales come to life through interactive games.</p>
+                <a href="https://github.com/dacods/atlas-Hack_sprint" target="_blank">GitHub Repo</a>
+                <a href="https://dacods.itch.io/two-dudes-two-games" target="_blank">Live Demo</a>
+            </div>
+        </div>
+        <div class="portfolio-footer">
+            <p class="portfolio-github">My GitHub</p>
+            <a href="https://github.com/BPChance" class="github_icon" target="_blank">
+                <img src="images/github_icon.png" alt="GitHub" width="30">
+            </a>
+        </div>
+    </section>
+
+    <section id="contact">
+        <h2>Contact Me</h2>
+        <p>Feel free to reach out via email. You can also view my resume:</p>
+
+        <button class="resume-btn" id="view-resume-btn" onclick="toggleResume()">View My Resume</button>
+        <div class="resume-container hidden" id="resume-container">
+            <iframe src="files/Resume.pdf" class="resume-preview"></iframe>
+            <a href="files/Resume.pdf" target="_blank" download>
+                <button>Download My Resume</button>
+            </a>
+        </div>
+
+        <p>Email: <a href="mailto:braden6chance@gmail.com">braden6chance@gmail.com</a></p>
+
+        <form action="https://formspree.io/f/mwpvqkyn" method="POST">
+            <label for="name">Name:</label>
+            <input type="text" id="name" name="name" required>
+
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" required>
+
+            <label for="message">Message:</label>
+            <textarea id="message" name="message" rows="4" required></textarea>
+
+            <button type="submit">Send</button>
+        </form>
+        <a href="index.html" class="back-link">Back to Top</a>
+    </section>
+
+    <footer>
+        <div class="footer-left">
+            <a href="https://github.com/BPChance" class="github_icon" target="_blank">
+                <img src="images/github_icon.png" alt="GitHub" width="30">
+            </a>
+            <a href="https://www.linkedin.com/in/bpchance" target="_blank">
+                <img src="images/linkedin-icon.png" alt="LinkedIn" width="30">
+            </a>
+            <a href="mailto:braden6chance@gmail.com">
+                <img src="images/email_icon.png" alt="Email" width="30">
+            </a>
+        </div>
+
+        <div class="footer-right">
+            <p>© 2025 Braden Chance</p>
+        </div>
+    </footer>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const sections = document.querySelectorAll("section");
+
+            function fadeSections() {
+                let scrollPosition = window.scrollY;
+                let windowHeight = window.innerHeight;
+
+                sections.forEach((section, index) => {
+                    let sectionTop = section.offsetTop;
+                    let sectionBottom = sectionTop + section.offsetHeight;
+                    let fadeThreshold = 0.5;
+
+                    let visibleAmount = Math.max(0, Math.min(windowHeight, sectionBottom - scrollPosition, scrollPosition + windowHeight - sectionTop));
+                    let visibleRatio = visibleAmount / windowHeight;
+
+                    if (visibleRatio > fadeThreshold) {
+                        section.style.opacity = 1;
+                    } else {
+                        section.style.opacity = Math.max(0, visibleRatio);
+                    }
+                });
+            }
+
+            window.addEventListener("scroll", fadeSections);
+            fadeSections();
+        });
+    </script>
+    <script>
+        function toggleResume() {
+            const resumeContainer = document.getElementById("resume-container");
+            const viewButton = document.getElementById("view-resume-btn");
+
+            if (resumeContainer.style.display === "none" || resumeContainer.style.display === "") {
+                resumeContainer.style.display = "flex";
+                viewButton.innerText = "Hide Resume";
+            } else {
+                resumeContainer.style.display = "none";
+                viewButton.innerText = "View My Resume";
+            }
+        }
+    </script>
+
+</body>
+</html>
